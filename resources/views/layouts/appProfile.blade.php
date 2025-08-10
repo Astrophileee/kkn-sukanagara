@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
-<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
+<body class="bg-white text-gray-900 overflow-x-hidden">
     @include('layouts.partials.headerProfile')
 
     <main class="min-h-screen">

@@ -1,93 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w bg-white p-6 rounded-lg shadow">
-        <div class="flex justify-between items-center mb-4">
-            <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i> back</a>
-
-            @if (Auth::id() === $submission->id_user)
-                <div>
-                    <button onclick="document.getElementById('modal-tambah-forum').classList.remove('hidden')"
-                        class="bg-black text-white px-4 py-2 rounded-md shadow hover:bg-gray-800">
-                        <i class="fa-solid fa-share-from-square"></i>
-                    </button>
-
-                    <select name="status" id="status-dropdown" data-id="{{ $submission->id }}" onchange="updateStatus(this)"
-                        class="border border-gray-300 rounded py-1 text-sm">
-                        <option value="pending" {{ $submission->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="reject" {{ $submission->status === 'reject' ? 'selected' : '' }}>Reject</option>
-                        <option value="accept" {{ $submission->status === 'accept' ? 'selected' : '' }}>Accept</option>
-                    </select>
-                </div>
-            @endif
+<div class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+    {{-- Header --}}
+    <div class="flex justify-between items-center mb-4">
+        <a href="{{ route('submissions.index') }}"><i class="fa-solid fa-arrow-left"></i> back</a>
+        <div>
+            <select name="status" id="status-dropdown" data-id="{{ $submission->id }}" onchange="updateStatus(this)"
+                class="border border-gray-300 rounded py-1 text-sm">
+                <option value="pending" {{ $submission->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="reject" {{ $submission->status === 'reject' ? 'selected' : '' }}>Reject</option>
+                <option value="accept" {{ $submission->status === 'accept' ? 'selected' : '' }}>Accept</option>
+            </select>
         </div>
-        {{-- Header: Judul --}}
-        <div class="font-semibold">
-            {{ $submission->nama_pengaju }} - {{ $submission->nomor_hp_pengaju }}
+    </div>
+
+    {{-- Judul Pengaduan --}}
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-1">{{ $submission->judul }}</h1>
+        <p class="text-sm text-gray-500">
             @if($submission->created_at->diffInDays(now()) >= 1)
-                {{ $submission->created_at->format('d/m/y H:i') }}
+                Dibuat {{ $submission->created_at->format('d/m/Y H:i') }}
             @else
-                {{ $submission->created_at->diffForHumans() }}
+                Dibuat {{ $submission->created_at->diffForHumans() }}
             @endif
-        </div>
-        <h1 class="text-3xl font-bold mb-4 text-gray-900">{{ $submission->judul }}</h1>
+        </p>
+    </div>
 
-        {{-- Info User + Waktu --}}
-        <div class="flex mb-4">
-            <div class="text-xl text-gray-700 ">
-                    {!! nl2br(e($submission->isi)) !!}
-            </div>
+    {{-- Identitas Pelapor --}}
+    <div class="mb-8">
+        <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Identitas Pelapor</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <p><span class="font-medium">Nama:</span> {{ $submission->nama }}</p>
+            <p><span class="font-medium">NIK:</span> {{ $submission->nik }}</p>
+            <p><span class="font-medium">Alamat:</span> {{ $submission->alamat }}</p>
+            <p><span class="font-medium">RT / RW:</span> {{ $submission->rt }}</p>
+            <p><span class="font-medium">Pekerjaan:</span> {{ $submission->pekerjaan }}</p>
+            <p><span class="font-medium">Status di Desa:</span> {{ $submission->status_desa }}</p>
         </div>
     </div>
 
-
-        <!-- Modal Tambah -->
-<div id="modal-tambah-forum" class="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 hidden">
-    <div class="min-h-screen flex items-center justify-center py-6 px-4">
-        <div class="bg-white w-full max-w-md mx-auto rounded-lg shadow-lg p-6 relative">
-            <!-- Close button -->
-            <button onclick="document.getElementById('modal-tambah-forum').classList.add('hidden')" class="absolute top-4 right-4 text-xl font-bold text-gray-600 hover:text-gray-800">&times;</button>
-
-            <h2 class="text-lg font-semibold mb-4">Tambah Diskusi</h2>
-
-                <form action="{{ route('forums.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-                    @csrf
-                    <input type="hidden" name="id_submission" id="id_submission" value="{{ $submission->id }}">
-                    <!-- Judul -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Judul</label>
-                        <input type="text" name="judul" value="{{ old('judul') }}" required class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 text-sm">
-                        @error('judul')
-                            <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- isi -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Isi</label>
-                        <textarea name="isi" required class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 text-sm">{{ old('isi') }}</textarea>
-                        @error('isi')
-                            <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Action -->
-                    <div class="flex justify-end gap-2 pt-2">
-                        <button type="button" onclick="resetForm(); document.getElementById('modal-tambah-forum').classList.add('hidden')" class="px-4 py-2 rounded-md border text-sm">Batal</button>
-                        <button type="submit" class="px-4 py-2 bg-black text-white rounded-md text-sm hover:bg-gray-800">Simpan</button>
-                    </div>
-                </form>
-
+    {{-- Detail Pengaduan --}}
+    <div class="mb-8">
+        <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Detail Pengaduan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+            <p><span class="font-medium">Jenis Pengaduan:</span> {{ ucfirst($submission->jenis) }}</p>
+            <p><span class="font-medium">Lokasi Kejadian:</span> {{ $submission->lokasi }}</p>
+            <p><span class="font-medium">Waktu Kejadian:</span> {{ $submission->waktu }}</p>
+            <p><span class="font-medium">Pihak Terlibat:</span> {{ $submission->pihak }}</p>
+        </div>
+        <div class="text-sm mb-4">
+            <p class="mb-2"><span class="font-medium">Kronologi Kejadian:</span></p>
+            <p class="bg-gray-50 p-3 rounded border">{{ $submission->kronologi }}</p>
+        </div>
+        <div class="text-sm mb-4">
+            <p class="mb-2"><span class="font-medium">Dampak yang Dirasakan:</span></p>
+            <p class="bg-gray-50 p-3 rounded border">{{ $submission->dampak }}</p>
+        </div>
+        <div class="text-sm">
+            <p class="mb-2"><span class="font-medium">Harapan / Usulan:</span></p>
+            <p class="bg-gray-50 p-3 rounded border">{{ $submission->harapan }}</p>
         </div>
     </div>
+
+    {{-- Bukti Pendukung --}}
+    @if($submission->photo)
+    <div>
+        <h2 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-4">Bukti Pendukung</h2>
+        <img src="{{ asset('storage/' . $submission->photo) }}"
+             alt="Bukti Pengaduan"
+             class="w-full md:w-1/2 rounded-lg border shadow-md">
+    </div>
+    @endif
 </div>
 
 @vite('resources/js/submissions.js')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        @if($errors->any())
-            document.getElementById('modal-tambah-forum').classList.remove('hidden');
-        @endif
-    });
-</script>
 @endsection

@@ -8,20 +8,20 @@ class Submission extends Model
 {
     protected $table = 'submissions';
     protected $fillable = [
-        'judul',
-        'isi',
         'status',
-        'nama_pengaju',
-        'nomor_hp_pengaju',
-        'id_user'
+        'nama',
+        'nik',
+        'alamat',
+        'pekerjaan',
+        'rt',
+        'status_desa',
+        'jenis',
+        'lokasi',
+        'waktu',
+        'kronologi',
+        'pihak',
+        'dampak',
+        'harapan',
+        'photo',
     ];
-
-        public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user');
-    }
-        public function forums()
-    {
-        return $this->hasMany(Forum::class, 'id_forum');
-    }
 }

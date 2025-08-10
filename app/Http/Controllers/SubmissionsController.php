@@ -15,7 +15,7 @@ class SubmissionsController extends Controller
      */
     public function index()
     {
-        $submissions = Submission::with('user')->latest()->get();
+        $submissions = Submission::all();
         return view('submissions.index', compact('submissions'));
     }
 
@@ -32,45 +32,56 @@ class SubmissionsController extends Controller
      */
     public function store(Request $request)
     {
-
-            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                'secret' => '6Lce1ZIrAAAAALxpz_-1EnQ7vbNAAXcXmsKDRbb2',
-                'response' => $request->input('g-recaptcha-response'),
-                'remoteip' => $request->ip(),
-            ]);
-
-            if (!$response->json('success')) {
-                return back()->withErrors(['g-recaptcha-response' => 'Verifikasi CAPTCHA gagal.'])->withInput();
-            }
-
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'name' => 'required|string|max:255',
-            'no_hp' => 'required|numeric|phone:ID',
-            'judul' => 'required|string|max:255',
-            'isi' => 'required|string'
+            'nama' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'rt_rw' => 'required|string|max:255',
+            'pekerjaan' => 'required|string|max:255',
+            'status_desa' => 'required|string|max:255',
+            'jenis_pengaduan' => 'required|string|max:255',
+            'lokasi' => 'required|string|max:255',
+            'waktu' => 'required|string|max:255',
+            'kronologi' => 'required|string|max:255',
+            'pihak_terlibat' => 'required|string|max:255',
+            'dampak' => 'required|string|max:255',
+            'harapan' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         DB::beginTransaction();
 
         try {
-            try{
-                $submission = Submission::create([
-                    'judul' => $validated['judul'],
-                    'isi' => $validated['isi'],
-                    'id_user' => $validated['user_id'],
-                    'nama_pengaju' => $validated['name'],
-                    'nomor_hp_pengaju' => $validated['no_hp'],
-                    'status' => 'pending',
-                ]);
-            }catch (NumberParseException $e) {
-                return back()->withErrors(['no_hp' => 'Nomor telepon tidak valid.'])->withInput();
+
+            $photoPath = null;
+            if ($request->hasFile('photo')) {
+                $randomName = 'photo_pengaduan_' . uniqid() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $photoPath = $request->file('photo')->storeAs('submissions', $randomName, 'public');
             }
+
+            $submission = Submission::create([
+                'photo' => $photoPath,
+                'nama' => $validated['nama'],
+                'nik' => $validated['nik'],
+                'alamat' => $validated['alamat'],
+                'rt' => $validated['rt_rw'],
+                'pekerjaan' => $validated['pekerjaan'],
+                'status_desa' => $validated['status_desa'],
+                'jenis' => $validated['jenis_pengaduan'],
+                'lokasi' => $validated['lokasi'],
+                'waktu' => $validated['waktu'],
+                'kronologi' => $validated['kronologi'],
+                'pihak' => $validated['pihak_terlibat'],
+                'dampak' => $validated['dampak'],
+                'harapan' => $validated['harapan'],
+                'status' => 'pending',
+            ]);
             DB::commit();
 
-            return redirect()->route('anggota')->with('success', 'Pengajuan berhasil ditambahkan.');
+            return redirect()->route('kontak')->with('success', 'Pengaduan berhasil ditambahkan.');
         } catch (\Throwable $e) {
             DB::rollBack();
+            dd($e->getMessage(), $e->getTraceAsString());
             return back()->withErrors(['error' => 'Gagal menyimpan data pengajuan.'])->withInput();
         }
     }

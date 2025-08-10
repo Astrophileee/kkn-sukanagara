@@ -19,7 +19,7 @@
             <div class="ml-10">
                 <!-- Judul -->
                 <h1 class="text-xl font-bold border border-purple-600 text-purple-600 inline-block px-4 py-1 rounded-full mb-6">
-                    Visi & Misi
+                    Profile Desa Sukanagara
                 </h1>
             </div>
 
@@ -27,7 +27,7 @@
             <div class="flex flex-col items-center">
                 <!-- Gambar -->
                 <div class="border border-black mb-6">
-                    <img src="{{ asset('images/default-image-square.png') }}" alt="gambar" class="max-w-[500px] max-h-[300px] object-cover">
+                    <img src="{{ asset('images/test.jpg') }}" alt="gambar" class="max-w-[500px] max-h-[300px] object-cover">
                 </div>
 
                 <!-- Text content -->

@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApbnController;
 use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\ForumsController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubmissionsController;
 use App\Http\Controllers\UserController;
@@ -18,6 +19,16 @@ Route::get('/visi&misi', function () {
 Route::get('/struktur-organisasi', function () {
     return view('company.struktur');
 })->name('struktur');
+Route::get('/profile-desa', function () {
+    return view('company.profileDesa');
+})->name('profileDesa');
+Route::get('/profile-kades', function () {
+    return view('company.profileKades');
+})->name('profileKades');
+
+Route::get('/kontak', function () {
+    return view('company.kontak');
+})->name('kontak');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -49,13 +60,15 @@ Route::prefix('informations')->name('informations.')->group(function () {
     Route::patch('/{information}', [InformationController::class, 'update'])->name('update');
     Route::delete('/{information}', [InformationController::class, 'destroy'])->name('destroy');
 });
-Route::prefix('forums')->name('forums.')->group(function () {
-    Route::get('/', [ForumsController::class, 'index'])->name('index');
-    Route::post('/', [ForumsController::class, 'store'])->name('store');
-    Route::get('/{forum}', [ForumsController::class, 'show'])->name('show');
-    Route::post('/{forum}/comments', [ForumsController::class, 'storeComments'])->name('store.comments');
-    Route::patch('/{forum}', [ForumsController::class, 'update'])->name('update');
-    Route::delete('/{forum}', [ForumsController::class, 'destroy'])->name('destroy');
+
+Route::prefix('apbns')->name('apbns.')->group(function () {
+    Route::get('/', [ApbnController::class, 'index'])->name('index');
+    Route::patch('/{apbn}', [ApbnController::class, 'update'])->name('update');
+});
+
+Route::prefix('penduduks')->name('penduduks.')->group(function () {
+    Route::get('/', [PendudukController::class, 'index'])->name('index');
+    Route::patch('/{penduduk}', [PendudukController::class, 'update'])->name('update');
 });
 
 Route::prefix('submissions')->name('submissions.')->group(function () {

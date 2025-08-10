@@ -244,24 +244,17 @@ document.addEventListener('DOMContentLoaded', function () {
     @endif
 });
 
-// Fungsi untuk mereset form
 function resetForm() {
-    // Reset semua input dalam form modal
     const form = document.querySelector('#modal-tambah-information form');
-    form.reset(); // Reset form (input, textarea, select)
-
-    // Reset preview foto
+    form.reset();
     const photoPreview = document.getElementById('photoPreview');
     const photoPreviewContainer = document.getElementById('photoPreviewContainer');
     photoPreviewContainer.classList.add('hidden');
-    photoPreview.src = ''; // Set preview ke default kosong
-
-    // Reset file input
+    photoPreview.src = '';
     const photoInput = document.getElementById('photoInput');
     photoInput.value = '';
 }
 
-// Menambahkan reset form ketika modal ditutup melalui tombol close (X)
 document.querySelector('#modal-tambah-information .absolute').addEventListener('click', function() {
     resetForm();
     document.getElementById('modal-tambah-information').classList.add('hidden');

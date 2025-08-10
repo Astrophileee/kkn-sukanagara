@@ -1,31 +1,33 @@
 @extends('layouts.appProfile')
 
 @section('content')
-<!-- Slider main container -->
-<div class="w-full h-[400px] overflow-hidden">
-    <div class="swiper mySwiper w-full h-full relative">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide relative w-full h-full flex justify-center items-center">
-                <img src="{{ asset('images/test.jpg') }}" class="w-full h-full object-cover" alt="...">
-            </div>
-            <div class="swiper-slide relative w-full h-full flex justify-center items-center">
-                <img src="{{ asset('images/default-image-square.png') }}" class="w-full h-full object-cover" alt="...">
-            </div>
-        </div>
-        <div class="swiper-button-next !text-black"></div>
-        <div class="swiper-button-prev !text-black"></div>
+
+<div class="relative w-full h-[711px]">
+    <!-- Gambar -->
+    <img src="{{ asset('images/test.jpg') }}" alt="Pemandangan Desa" class="w-full h-full object-cover">
+
+    <!-- Teks di atas gambar -->
+    <div class="absolute bottom-12 left-12">
+        <p class="text-xl font-medium" style="color: #FFEAEA;">Website</p>
+        <h1 class="text-7xl font-extrabold leading-tight text-white"
+            style="-webkit-text-stroke: 3px #88129F;">
+            DESA<br>SUKANAGARA
+        </h1>
     </div>
 </div>
 
-<div class="w-full flex justify-center mt-8">
-    <div class="flex justify-between items-center border-2 bg-black border-black rounded-full px-6 py-3 w-full max-w-6xl">
-        <p class="text-sm sm:text-base font-medium text-center sm:text-left text-white">
+
+
+
+<div data-aos="zoom-in-up" class="w-full flex justify-center mt-8">
+    <div class="flex justify-between items-center border-2 bg-purple-300 rounded-full px-6 py-3 w-full max-w-6xl">
+        <p class="text-sm sm:text-base font-medium text-center sm:text-left text-black">
             <b>
-                Silahkan ajukan pengajuan berita, pengaduan, keluhan, aspirasi, atau masukan anda yang membangun bagi PWI CIANJUR
+                Silahkan ajukan pengaduan, keluhan, aspirasi, atau masukan anda yang membangun bagi DESA SUKANAGARA
             </b>
         </p>
         <a href="{{ route('anggota') }}" class="border-2 border-black bg-white rounded-full px-4 py-1 text-sm sm:text-base
-                            hover:bg-black hover:border-white hover:text-white">
+                            hover:bg-purple-300">
             <b>
                 Hubungi Kami
             </b>
@@ -33,58 +35,145 @@
     </div>
 </div>
 
-<div class="py-10 flex justify-center items-center">
-    <div class="grid grid-cols-3 gap-12 text-center">
-        <!-- Item 1 -->
-        <div>
-            <i class="fas fa-newspaper text-5xl mb-2"></i>
-            <div class="text-2xl font-bold count-up" data-count="{{ $totalNews }}">0</div>
-            <div class="text-sm mt-1">Media Berita PWI Cianjur</div>
+<div class="py-10">
+    <h2 class="text-center text-xl font-bold mb-8">DATA PENDUDUK</h2>
+    <div class="flex justify-center gap-6">
+
+        <!-- Card 1 -->
+        <div data-aos="fade-right" class="bg-purple-300 w-40 h-40 rounded-2xl flex flex-col justify-center items-center border border-black shadow-xl">
+            <i class="fa-solid fa-person text-black text-3xl mb-2"></i>
+            <p class="text-black text-xl font-bold">
+                {{ number_format($penduduks['Penduduk']->total ?? 0, 0, ',', '.') }}
+            </p>
+            <p class="text-black text-sm">Penduduk</p>
         </div>
 
-        <!-- Item 2 -->
-        <div>
-            <i class="fas fa-id-badge text-5xl mb-2"></i>
-            <div class="text-2xl font-bold count-up" data-count="{{ $totalUsers }}">0</div>
-            <div class="text-sm mt-1">Anggota PWI Cianjur</div>
+        <!-- Card 2 -->
+        <div data-aos="fade-up" class="bg-purple-300 w-40 h-40 rounded-2xl flex flex-col justify-center items-center border border-black shadow-xl">
+            <i class="fa-solid fa-person text-black text-3xl mb-2"></i>
+            <p class="text-black text-xl font-bold">
+                {{ number_format($penduduks['Kartu Keluarga']->total ?? 0, 0, ',', '.') }}
+            </p>
+            <p class="text-black text-sm">Kartu Keluarga</p>
         </div>
 
-        <!-- Item 3 -->
-        <div>
-            <i class="fa-solid fa-share-from-square text-5xl mb-2"></i>
-            <div class="text-2xl font-bold count-up" data-count="{{ $totalSubmissions }}">0</div>
-            <div class="text-sm mt-1">Pengajuan Oleh Masyarakat</div>
+        <!-- Card 3 -->
+        <div data-aos="fade-left" class="bg-purple-300 w-40 h-40 rounded-2xl flex flex-col justify-center items-center border border-black shadow-xl">
+            <i class="fa-solid fa-person text-black text-3xl mb-2"></i>
+            <p class="text-black text-xl font-bold">
+                {{ number_format($penduduks['RT/RW']->total ?? 0, 0, ',', '.') }}
+            </p>
+            <p class="text-black text-sm">RT/RW</p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="py-10">
+    <h2 class="text-center text-xl font-bold mb-8">REALISASI DANA</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+        <!-- Card 1 -->
+        <div data-aos="flip-left" class="bg-green-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
+            <div>
+                <p class="text-black font-medium">Dana Desa</p>
+                <p class="text-black text-lg font-bold">{{ number_format($apbns['Dana Desa']->total ?? 0, 0, ',', '.') }}</p>
+            </div>
+            <i class="fa-solid fa-cart-shopping text-black text-3xl"></i>
+        </div>
+
+        <!-- Card 2 -->
+        <div data-aos="flip-right" class="bg-purple-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
+            <div>
+                <p class="text-black font-medium">Hasil Bumdes</p>
+                <p class="text-black text-lg font-bold">{{ number_format($apbns['Hasil Bumdes']->total ?? 0, 0, ',', '.') }}</p>
+            </div>
+            <i class="fa-solid fa-truck text-black text-3xl"></i>
+        </div>
+
+        <!-- Card 3 -->
+        <div data-aos="flip-left" class="bg-purple-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
+            <div>
+                <p class="text-black font-medium">Pengelolaan Kas Desa</p>
+                <p class="text-black text-lg font-bold">{{ number_format($apbns['Kas Desa']->total ?? 0, 0, ',', '.') }}</p>
+            </div>
+            <i class="fa-solid fa-wrench text-black text-3xl"></i>
+        </div>
+
+        <!-- Card 4 -->
+        <div data-aos="flip-right" class="bg-green-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
+            <div>
+                <p class="text-black font-medium">Pendapatan</p>
+                <p class="text-black text-lg font-bold">{{ number_format($apbns['Pendapatan']->total ?? 0, 0, ',', '.') }}</p>
+            </div>
+            <i class="fa-solid fa-thumbs-up text-black text-3xl"></i>
+        </div>
+
+    </div>
+</div>
+
+<div class="py-10">
+    <h2 class="text-center text-xl font-bold mb-8">LETAK GEOGRAFIS</h2>
+    <div class="flex justify-center">
+        <div class="block max-w-[800px] max-h-[400px] w-full">
+            <iframe
+                src="https://www.google.com/maps?q=Sukanagara%2C%20Cianjur&output=embed"
+                width="100%"
+                height="400"
+                style="border:0; border-radius: 10px;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
         </div>
     </div>
 </div>
 
 
-<section class="py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl font-bold mb-8 border-l-4 border-black pl-4">Informasi</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach ($informations as $information)
-                <div class="rounded-lg shadow-sm border hover:shadow-md transition p-4 flex flex-col">
-                    <img src="{{ asset($information->photo_url ?? 'images/default-image-square.png') }}" alt="Information Image"
-                        class="rounded-lg w-full h-40 object-cover mb-3">
-                    <p class="text-sm text-gray-500 mb-1">{{ \Carbon\Carbon::parse($information->created_at)->translatedFormat('l, d F Y') }}</p>
-                    <h3 class="font-semibold text-base mb-2 line-clamp-2">{{ $information->judul }}</h3>
-                    <a href="{{ route('informasi.show', $information) }}" class="mt-auto text-sm text-yellow-700 font-semibold hover:underline flex items-center gap-1">
+<div class="py-10">
+    <h2 class="text-center text-2xl font-bold mb-8">INFORMASI TERKINI</h2>
+
+    <!-- Grid Card -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        @foreach($informations as $info)
+            <div class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition p-4 flex flex-col">
+                @if($info->photo)
+                    <div class="h-40 overflow-hidden rounded">
+                        <img src="{{ asset('storage/' . $info->photo) }}"
+                            alt="{{ $info->judul }}"
+                            class="w-full h-full object-cover">
+                    </div>
+                @else
+                    <div class="bg-gray-200 h-40 flex items-center justify-center rounded">
+                        <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4-4-4-4m0 0l8 8 8-8M4 16V4a2 2 0 012-2h12a2 2 0 012 2v12"/>
+                        </svg>
+                    </div>
+                @endif
+
+                <h3 class="mt-4 font-semibold text-gray-800">{{ $info->judul }}</h3>
+                <p class="text-gray-600 text-sm mt-2 flex-grow">
+                    {{ Str::limit($info->isi, 100) }}
+                </p>
+                <a href="{{ route('informasi.show', $info->id) }}" class="mt-auto text-sm text-purple-600 font-semibold hover:underline flex items-center gap-1">
                         Baca Selengkapnya <i class="fas fa-arrow-right text-xs"></i>
                     </a>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="flex justify-center mt-10">
-            <a href="{{ route('informasi', $information) }}"
-            class="bg-black hover:bg-white text-white font-semibold px-6 py-3 rounded-full transitio hover:text-black">
-                Lihat Lebih Banyak
-            </a>
-        </div>
+                <p class="text-sm text-gray-500 mt-2">{{ $info->created_at->translatedFormat('F d Y') }}</p>
+            </div>
+        @endforeach
     </div>
-</section>
+
+    <!-- Tombol Lainnya -->
+    <div class="text-center mt-8">
+        <a href="{{ route('informasi') }}"
+            class="bg-purple-600 text-black px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition">
+            Lainnya
+        </a>
+    </div>
+</div>
 
 
 
@@ -93,47 +182,6 @@
 
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const counters = document.querySelectorAll('.count-up');
-        const duration = 2000; // total durasi animasi dalam ms (semakin besar semakin lambat)
-
-        const countUp = (el) => {
-            const target = +el.getAttribute('data-count');
-            let start = 0;
-            const startTime = performance.now();
-
-            const animate = (currentTime) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1); // 0 - 1
-                const current = Math.floor(progress * target);
-                el.textContent = current;
-
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    el.textContent = target; // pastikan berhenti tepat
-                }
-            };
-
-            requestAnimationFrame(animate);
-        };
-
-        // Jalankan animasi hanya saat elemen terlihat
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    countUp(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.5
-        });
-
-        counters.forEach(counter => observer.observe(counter));
-    });
-</script>
 
 
 @endsection

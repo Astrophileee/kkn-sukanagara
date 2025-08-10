@@ -3,11 +3,13 @@
 @section('content')
 <div class="flex">
     <!-- Sidebar -->
-    <div class="w-64 border-r border-black p-4 flex-shrink-0">
+    <div class="w-64 border-r border-purple-600 p-4 flex-shrink-0">
         <ul class="space-y-4">
-            <li><a href="{{ route('sejarah') }}" class="font-bold text-gray-700">Sejarah PWI Cianjur</a></li>
-            <li><a href="{{ route('visi') }}" class="font-bold text-gray-700">Visi Misi</a></li>
-            <li><a href="{{ route('struktur') }}" class="font-bold text-gray-700">Struktur Organisasi</a></li>
+            <li><a href="{{ route('profileDesa') }}" class="font-bold text-purple-600">Profile Desa Sukanagara</a></li>
+            <li><a href="{{ route('sejarah') }}" class="font-bold text-purple-600">Sejarah Desa Sukanagara</a></li>
+            <li><a href="{{ route('visi') }}" class="font-bold text-purple-600">Visi Misi</a></li>
+            <li><a href="{{ route('profileKades') }}" class="font-bold text-purple-600">Profile Kades</a></li>
+            <li><a href="{{ route('struktur') }}" class="font-bold text-purple-600">Struktur Organisasi</a></li>
         </ul>
     </div>
 
@@ -16,8 +18,8 @@
         <div class="mt-10">
             <div class="ml-10">
                 <!-- Judul -->
-                <h1 class="text-xl font-bold border border-black inline-block px-4 py-1 rounded-full mb-6">
-                    Sejarah PWI Cianjur
+                <h1 class="text-xl font-bold border border-purple-600 text-purple-600 inline-block px-4 py-1 rounded-full mb-6">
+                    Sejarah Desa Sukanagara
                 </h1>
             </div>
 

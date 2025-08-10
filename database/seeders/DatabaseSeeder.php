@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apbn;
+use App\Models\Penduduk;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,8 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $sekretarisRole = Role::firstOrCreate(['name' => 'sekretaris']);
-        $anggotaRole = Role::firstOrCreate(['name' => 'anggota']);
 
         $sekretaris = User::query()
             ->where('email', 'sekretaris@example.com')
@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
             $sekretaris = User::factory()->create([
                 'email' => 'sekretaris@example.com',
             ]);
-            $sekretaris->assignRole($sekretarisRole);
         }
 
         $anggota = User::query()
@@ -34,7 +33,52 @@ class DatabaseSeeder extends Seeder
             $anggota = User::factory()->create([
                 'email' => 'anggota@example.com',
             ]);
-            $anggota->assignRole($anggotaRole);
+        }
+
+        $penduduk = Penduduk::query()->where('label', 'Penduduk')->first();
+        if ($penduduk === null) {
+            $penduduk = Penduduk::factory()->create([
+                'label' => 'Penduduk',
+            ]);
+        }
+        $kk = Penduduk::query()->where('label', 'Kartu Keluarga')->first();
+        if ($kk === null) {
+            $kk = Penduduk::factory()->create([
+                'label' => 'Kartu Keluarga',
+            ]);
+        }
+        $rt = Penduduk::query()->where('label', 'RT/RW')->first();
+        if ($rt === null) {
+            $rt = Penduduk::factory()->create([
+                'label' => 'RT/RW',
+            ]);
+        }
+
+
+
+        $dana = Apbn::query()->where('label', 'Dana Desa')->first();
+        if ($dana === null) {
+            $dana = Apbn::factory()->create([
+                'label' => 'Dana Desa',
+            ]);
+        }
+        $bumdes = Apbn::query()->where('label', 'Hasil Bumdes')->first();
+        if ($bumdes === null) {
+            $bumdes = Apbn::factory()->create([
+                'label' => 'Hasil Bumdes',
+            ]);
+        }
+        $kas = Apbn::query()->where('label', 'Kas Desa')->first();
+        if ($kas === null) {
+            $kas = Apbn::factory()->create([
+                'label' => 'Kas Desa',
+            ]);
+        }
+        $pendapatan = Apbn::query()->where('label', 'Pendapatan')->first();
+        if ($pendapatan === null) {
+            $pendapatan = Apbn::factory()->create([
+                'label' => 'Pendapatan',
+            ]);
         }
     }
 }

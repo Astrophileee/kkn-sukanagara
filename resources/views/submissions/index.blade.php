@@ -19,17 +19,14 @@
                 <a href="{{ route('submissions.show', $submission) }}" class="block bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                     <div class="p-4">
                         <div class="text-sm text-gray-500 mb-1">
-                            <span class="font-semibold text-gray-800">{{ $submission->nama_pengaju }}</span> •
+                            <span class="font-semibold text-gray-800">{{ $submission->nama }}</span> •
                             <span>dibuat {{ $submission->created_at->diffForHumans() }} • </span>
                             <span class="px-3 py-1 text-sm font-semibold rounded-full {{ $badge['bg'] }} {{ $badge['text'] }} inline-block mt-1">
                                 {{ $badge['label'] }}
                             </span>
                         </div>
-                        <h2 class="text-lg font-bold text-gray-900 mb-2">
-                            {{ $submission->judul }}
-                        </h2>
                         <div class="w-full h-24 text-sm text-gray-600 overflow-hidden">
-                                {{ Str::limit(strip_tags($submission->isi), 200) }}
+                                {{ Str::limit(strip_tags($submission->kronologi), 200) }}
                         </div>
                     </div>
                 </a>

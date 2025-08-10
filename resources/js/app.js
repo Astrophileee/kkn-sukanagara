@@ -8,6 +8,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+AOS.init({
+    duration: 1000,
+    once: false,
+    offset: 120,
+});
+
 // init Swiper:
 var swiper = new Swiper(".mySwiper", {
         modules: [Navigation, Pagination],
@@ -40,7 +50,7 @@ window.showToast = function (type, message) {
     Swal.fire({
         toast: true,
         position: 'top-end',
-        icon: type, // 'success', 'error', 'warning', etc.
+        icon: type,
         title: message,
         showConfirmButton: false,
         timer: 3000,
@@ -50,10 +60,9 @@ window.showToast = function (type, message) {
 
 
 $(document).ready(function () {
-    // Cek apakah ada notifikasi dari Laravel di elemen dengan id #flash-message
     const flashMessage = document.getElementById('flash-message');
     if (flashMessage) {
-        const type = flashMessage.dataset.type; // success / error / warning
+        const type = flashMessage.dataset.type;
         const message = flashMessage.dataset.message;
 
         if (type && message) {
@@ -62,8 +71,6 @@ $(document).ready(function () {
     }else {
         console.log('Flash message not found.');
     }
-
-    // DataTable
     $('#usersTable').DataTable({
         responsive: true,
         pageLength: 10,
@@ -92,5 +99,24 @@ $(document).ready(function () {
     ]
     });
 
-});
+    $('#apbnsTable').DataTable({
+        responsive: true,
+        pageLength: 10,
+        lengthChange: false,
+        language: {
+            searchPlaceholder: 'Cari...',
+            search: '',
+        },
+    });
 
+    $('#penduduksTable').DataTable({
+        responsive: true,
+        pageLength: 10,
+        lengthChange: false,
+        language: {
+            searchPlaceholder: 'Cari...',
+            search: '',
+        },
+    });
+
+});

@@ -4,7 +4,7 @@
         <div class="flex items-center gap-2">
             <img src="/images/default-image-square.png" alt="Logo" class="w-8 h-8" />
             <div>
-                <h1 class="font-bold text-sm leading-none">PWI</h1>
+                <h1 class="font-bold text-sm leading-none">DESA SUKANAGARA</h1>
                 <p class="text-xs text-gray-500 leading-none">Cianjur</p>
             </div>
         </div>
@@ -13,8 +13,8 @@
         <nav class="flex gap-6 text-sm font-medium text-gray-700">
             <a href="{{ route('beranda') }}" class="hover:text-black">Beranda</a>
             <a href="{{ route('sejarah') }}" class="hover:text-black">Tentang Kami</a>
-            <a href="{{ route('anggota') }}" class="hover:text-black">Anggota</a>
             <a href="{{ route('informasi') }}" class="hover:text-black">Informasi</a>
+            <a href="{{ route('kontak') }}" class="hover:text-black">Kontak</a>
         </nav>
     </div>
 </header>

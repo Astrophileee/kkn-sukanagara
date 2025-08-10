@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apbn;
 use App\Models\Information;
+use App\Models\Penduduk;
 use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,12 +16,12 @@ class CompanyProfileController extends Controller
      */
     public function index()
     {
-        $totalUsers = User::count();
-        $totalSubmissions = Submission::count();
-        $totalNews = 25; // jika masih statis, atau kamu bisa ganti dengan count dari berita
-        $informations = Information::latest()->take(4)->get();
+        $informations = Information::latest()->take(3)->get();
 
-        return view('company.beranda', compact('totalUsers', 'totalSubmissions', 'totalNews', 'informations'));
+        $penduduks = Penduduk::all()->keyBy('label');
+        $apbns = Apbn::all()->keyBy('label');
+
+        return view('company.beranda', compact('informations', 'penduduks', 'apbns'));
     }
 
     public function information()
@@ -29,12 +31,6 @@ class CompanyProfileController extends Controller
         return view('company.informasi', compact('informations'));
     }
 
-    public function anggota()
-    {
-        $users = User::all();
-
-        return view('company.anggota', compact('users'));
-    }
 
     /**
      * Show the form for creating a new resource.

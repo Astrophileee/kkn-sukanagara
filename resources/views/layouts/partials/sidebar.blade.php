@@ -7,7 +7,7 @@
     <div class="p-4 flex items-center gap-2">
         <img src="/images/default-image-square.png" alt="Logo" class="w-8 h-8" />
         <div>
-            <h1 class="font-bold text-sm">SIPWICA</h1>
+            <h1 class="font-bold text-sm">DESA SUKANAGARA</h1>
             <p class="text-xs text-gray-500">management</p>
         </div>
     </div>
@@ -28,13 +28,17 @@
         <i class="fa-solid fa-newspaper w-5 h-5 pt-1 text-gray-600"></i>
         Data Informasi
     </a>
-    <a href="{{ route('forums.index') }}" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100">
-        <i class="fa-solid fa-comments w-5 h-5 pt-1 text-gray-600"></i>
-        Forum Diskusi
-    </a>
     <a href="{{ route('submissions.index') }}" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100">
         <i class="fa-solid fa-inbox w-5 h-5 pt-1 text-gray-600"></i>
         Inbox Pengajuan
+    </a>
+    <a href="{{ route('apbns.index') }}" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100">
+        <i class="fa-solid fa-wallet w-5 h-5 pt-1 text-gray-600"></i>
+        APBN
+    </a>
+    <a href="{{ route('penduduks.index') }}" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100">
+        <i class="fa-solid fa-people-group w-5 h-5 pt-1 text-gray-600"></i>
+        Penduduk
     </a>
     </nav>
 </aside>
