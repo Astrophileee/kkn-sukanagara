@@ -26,7 +26,7 @@
                 Silahkan ajukan pengaduan, keluhan, aspirasi, atau masukan anda yang membangun bagi DESA SUKANAGARA
             </b>
         </p>
-        <a href="{{ route('anggota') }}" class="border-2 border-black bg-white rounded-full px-4 py-1 text-sm sm:text-base
+        <a href="{{ route('kontak') }}" class="border-2 border-black bg-white rounded-full px-4 py-1 text-sm sm:text-base
                             hover:bg-purple-300">
             <b>
                 Hubungi Kami

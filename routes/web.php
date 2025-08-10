@@ -36,8 +36,6 @@ Route::get('/dashboard', function () {
 
 Route::get('/informasi', [CompanyProfileController::class, 'information'])->name('informasi');
 
-Route::get('/anggota', [CompanyProfileController::class, 'anggota'])->name('anggota');
-
 
 Route::get('/informasi/{informasi}', [CompanyProfileController::class, 'show'])->name('informasi.show');
 
