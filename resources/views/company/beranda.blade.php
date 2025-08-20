@@ -4,11 +4,11 @@
 
 <div class="relative w-full h-[711px]">
     <!-- Gambar -->
-    <img src="{{ asset('images/test.jpg') }}" alt="Pemandangan Desa" class="w-full h-full object-cover">
+    <img src="{{ asset('images/beranda-sukanagara.jpg') }}" alt="Pemandangan Desa" class="w-full h-full object-cover">
 
     <!-- Teks di atas gambar -->
     <div class="absolute bottom-12 left-12">
-        <p class="text-xl font-medium" style="color: #FFEAEA;">Website</p>
+        <p class="text-3xl font-medium" style="color: #FFEAEA;">Website</p>
         <h1 class="text-7xl font-extrabold leading-tight text-white"
             style="-webkit-text-stroke: 3px #88129F;">
             DESA<br>SUKANAGARA
@@ -65,50 +65,48 @@
             </p>
             <p class="text-black text-sm">RT/RW</p>
         </div>
-
     </div>
 </div>
 
 
 <div class="py-10">
     <h2 class="text-center text-xl font-bold mb-8">REALISASI DANA</h2>
-
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
 
         <!-- Card 1 -->
         <div data-aos="flip-left" class="bg-green-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
             <div>
-                <p class="text-black font-medium">Dana Desa</p>
+                <p class="text-black font-medium">Total Pendapatan</p>
                 <p class="text-black text-lg font-bold">{{ number_format($apbns['Dana Desa']->total ?? 0, 0, ',', '.') }}</p>
             </div>
-            <i class="fa-solid fa-cart-shopping text-black text-3xl"></i>
+            <i class="fa-solid fa-money-bill-trend-up text-black text-3xl"></i>
         </div>
 
         <!-- Card 2 -->
         <div data-aos="flip-right" class="bg-purple-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
             <div>
-                <p class="text-black font-medium">Hasil Bumdes</p>
+                <p class="text-black font-medium">Total Belanja</p>
                 <p class="text-black text-lg font-bold">{{ number_format($apbns['Hasil Bumdes']->total ?? 0, 0, ',', '.') }}</p>
             </div>
-            <i class="fa-solid fa-truck text-black text-3xl"></i>
+            <i class="fa-solid fa-cart-shopping text-black text-3xl"></i>
         </div>
 
         <!-- Card 3 -->
         <div data-aos="flip-left" class="bg-purple-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
             <div>
-                <p class="text-black font-medium">Pengelolaan Kas Desa</p>
+                <p class="text-black font-medium">Pembiayaan</p>
                 <p class="text-black text-lg font-bold">{{ number_format($apbns['Kas Desa']->total ?? 0, 0, ',', '.') }}</p>
             </div>
-            <i class="fa-solid fa-wrench text-black text-3xl"></i>
+            <i class="fa-solid fa-coins text-black text-3xl"></i>
         </div>
 
         <!-- Card 4 -->
         <div data-aos="flip-right" class="bg-green-300 rounded-xl p-5 flex justify-between items-center border border-black shadow-xl">
             <div>
-                <p class="text-black font-medium">Pendapatan</p>
+                <p class="text-black font-medium">Dana Desa</p>
                 <p class="text-black text-lg font-bold">{{ number_format($apbns['Pendapatan']->total ?? 0, 0, ',', '.') }}</p>
             </div>
-            <i class="fa-solid fa-thumbs-up text-black text-3xl"></i>
+            <i class="fa-solid fa-wallet text-black text-3xl"></i>
         </div>
 
     </div>

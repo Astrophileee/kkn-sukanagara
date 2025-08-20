@@ -26,25 +26,25 @@
             <!-- Gambar dan Teks -->
             <div class="flex flex-col items-center">
                 <div class="flex justify-center mb-4">
-                    <img src="{{ asset('images/kades.jpg') }}"
+                    <img src="{{ asset('images/kades-sukanagara.jpg') }}"
                         alt="Foto Kades"
-                        class="w-48 h-48 object-cover rounded-lg border border-gray-300 shadow-md">
+                        class="w-60 h-56 object-cover rounded-lg border border-gray-300 shadow-md">
                 </div>
 
                 <!-- Nama & Biografi -->
                 <div class="text-center">
-                    <h3 class="text-xl font-bold">Nama Kepala Desa</h3>
+                    <h3 class="text-xl font-bold">Kepala Desa Sukanagara</h3>
                     <p class="text-gray-600 italic">Biografi</p>
                 </div>
 
                 <!-- Detail Info -->
                 <div class="text-sm text-gray-800 space-y-2">
                     <hr class="border-2 border-black my-3 mx-auto">
-                    <p><span class="font-semibold">Nama Lengkap:</span> Budi Santoso</p>
-                    <p><span class="font-semibold">Tanggal Lahir:</span> 12 Mei 1980</p>
+                    <p><span class="font-semibold">Nama Lengkap:</span> Wawan Ridwansyah</p>
+                    <p><span class="font-semibold">Tanggal Lahir:</span> 15 Desember 1959</p>
                     <p><span class="font-semibold">Tempat Lahir:</span> Cianjur</p>
-                    <p><span class="font-semibold">Pendidikan:</span> S1 Ilmu Pemerintahan</p>
-                    <p><span class="font-semibold">Masa Jabatan:</span> 2020 - Sekarang</p>
+                    <p><span class="font-semibold">Pendidikan:</span> S1</p>
+                    <p><span class="font-semibold">Masa Jabatan:</span> 2024 - Sekarang</p>
                 </div>
             </div>
         </div>

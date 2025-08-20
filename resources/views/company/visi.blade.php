@@ -25,21 +25,44 @@
 
             <!-- Gambar dan Teks -->
             <div class="flex flex-col items-center">
-                <!-- Gambar -->
-                <div class="border border-black mb-6">
-                    <img src="{{ asset('images/default-image-square.png') }}" alt="gambar" class="max-w-[500px] max-h-[300px] object-cover">
-                </div>
 
                 <!-- Text content -->
                 <div class="space-y-4 text-justify text-gray-800 px-6 md:px-20 lg:px-32">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
-                        Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                    <p class="text-3xl font-semibold">
+                        Visi
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla
-                        lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                        Terwujudnya Desa Sukanagara yang Koordinatif, Agamis, Solutif, Edukatif dan Produktif
                     </p>
+                    <p class="text-3xl font-semibold">
+                        Visi
+                    </p>
+                    <ol type="1" class="list-decimal list-inside">
+                        <li>
+                            Melakukan perbaikan birokrasi dijajaran pemerintah desa gunameningkatkan kwalitas pelayanan kepada masyarakat;
+                        </li>
+                        <li>
+                            Menyelenggarakan pemerintahan yang bersih terbebas dari korupsiserta bentuk-bentuk penyelewengan lainnya;
+                        </li>
+                        <li>
+                            Meningkatkan perekonomian masyarakat dengan berbasiskan padapotensi desa;
+                        </li>
+                        <li>
+                            Meningkatkan mutu kesejahteraan masyarakat untuk mencapai tarapkehidupan yang lebih baik dan layak;
+                        </li>
+                        <li>
+                            Mewujudkan propesionalisme yang transparan dalammenyelenggarakan pemerintahan;
+                        </li>
+                        <li>
+                            Meningkatkan sarana prasarana tempat ibadah guna meningkatkankeimanan dan ketaqwaan serta dalam membentuk akhlaqulkarimah;
+                        </li>
+                        <li>
+                            Meningkatkan sarana dan prasarana umum guna meningkatkankelancaran perekonomian masyarakat;
+                        </li>
+                        <li>
+                            Mengembangkan pemberdayaan masyarakat dan kemitraan dalampembangunan desa yang bersangkutan.
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
